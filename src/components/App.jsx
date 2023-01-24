@@ -36,7 +36,7 @@ export class App extends Component {
 
   addContact = ({ name, number }) => {
     if (this.isDublicate(name, number)) {
-      return alert(`Name ${name} or namber ${number} is already in contacts`);
+      return alert(`Name ${name} or number ${number} is already in contacts`);
     }
 
     const contact = {
