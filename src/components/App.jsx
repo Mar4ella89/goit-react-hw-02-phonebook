@@ -18,32 +18,46 @@ export class App extends Component {
     }));
   };
 
+  isDublicate = (name, number) => {
+    const normalizedName = name.toLowerCase();
+    const normalizedNumber = number.toLowerCase();
+    const { items } = this.state;
+    const contactData = items.find(({ name, number }) => {
+      return (
+        name.toLowerCase() === normalizedName ||
+        number.toLowerCase() === normalizedNumber
+      );
+    });
+
+    return Boolean(contactData);
+  };
+
   addContact = ({ name, number }) => {
+    if (this.isDublicate(name, number)) {
+      return alert(`${name} or ${number} is already in contacts`);
+    }
+
     const contact = {
       id: nanoid(),
       name,
       number,
     };
 
-    this.setState(prevstate => {
-      if (prevstate.name === contact.name) {
-        return alert(`${contact.name} is already in contacts`);
-      }
-      
-      ({
-        contacts: [contact, ...prevstate.contacts],
-      });
-    });
+    this.setState(prevstate => ({
+      contacts: [contact, ...prevstate.contacts],
+    }));
   };
+
+  
 
   changeFilter = event => this.setState({ filter: event.currentTarget.value });
 
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLocaleLowerCase();
+    const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
-      contact.name.toLocaleLowerCase().includes(normalizedFilter)
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
