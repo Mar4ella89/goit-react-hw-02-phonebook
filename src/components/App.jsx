@@ -22,6 +22,16 @@ export class App extends Component {
     }));
   };
 
+  addContact = contactId => {
+    // this.setState(prevstate => ({
+    //   contacts: prevstate.contacts.map(contact => {
+    //     if (contact.id === contactId) {
+    //       return { ...contacts };
+    //     }
+    //   }),
+    // }));
+  };
+
   render() {
     const { contacts } = this.state;
     return (
