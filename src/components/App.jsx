@@ -18,11 +18,13 @@ export class App extends Component {
     }));
   };
 
-  isDublicate = (name, number) => {
+  isDublicate(name, number) {
     const normalizedName = name.toLowerCase();
     const normalizedNumber = number.toLowerCase();
-    const { items } = this.state;
-    const contactData = items.find(({ name, number }) => {
+
+    const { contacts } = this.state;
+
+    const contactData = contacts.find(({ name, number }) => {
       return (
         name.toLowerCase() === normalizedName ||
         number.toLowerCase() === normalizedNumber
@@ -30,11 +32,11 @@ export class App extends Component {
     });
 
     return Boolean(contactData);
-  };
+  }
 
   addContact = ({ name, number }) => {
     if (this.isDublicate(name, number)) {
-      return alert(`${name} or ${number} is already in contacts`);
+      return alert(`Name ${name} or namber ${number} is already in contacts`);
     }
 
     const contact = {
@@ -47,8 +49,6 @@ export class App extends Component {
       contacts: [contact, ...prevstate.contacts],
     }));
   };
-
-  
 
   changeFilter = event => this.setState({ filter: event.currentTarget.value });
 
