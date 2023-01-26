@@ -25,12 +25,12 @@ const ContactList = ({ contacts, onDeleteContact }) => {
 };
 
 ContactList.ContactList = {
-   onDeleteContact: PropTypes.func.isRequired,
-   contacts: PropTypes.arrayOf(
+  onDeleteContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.number.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
 };
